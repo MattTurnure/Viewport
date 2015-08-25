@@ -1,15 +1,14 @@
 {
-  "name": "Crossfit PR Weight Calculator",
+  "name": "Viewport",
   "version": "1.0.0",
-  "homepage": "https://github.com/CodeScience/Mattstrap",
+  "homepage": "https://github.com/MattTurnure/Viewport",
   "authors": [
     "Matthew Turnure <matt@mattturnure.com>"
   ],
-  "description": "Crossfit PR Weight Calculator",
+  "description": "Viewport",
   "keywords": [
-    "Bootstrap",
-    "sass",
-    "scss"
+    "JavaScript",
+    "SCSS"
   ],
   "license": "MIT",
   "ignore": [
@@ -18,8 +17,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "bootstrap-sass": "~3.3.5"
-  }
+  ]
 }

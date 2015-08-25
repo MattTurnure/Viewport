@@ -24,18 +24,16 @@ gulp.task('styles', function () {
         style: 'expanded',
         precision: 8
     };
-    gulp.src('src/scss/main.scss')
+    gulp.src('src/assets/scss/main.scss')
     .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('dist/assets/styles'))
     .pipe(notify({message: 'Sass task complete'}));
 });
 
 gulp.task('scripts', function () {
     return gulp.src([
-            'src/assets/js/main.js'
+            'src/assets/js/viewport.js'
         ])
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
         .pipe(concat('main.js'))
         .pipe(gulp.dest('dist/assets/js'))
         .pipe(rename({suffix: '.min'}))
@@ -44,11 +42,19 @@ gulp.task('scripts', function () {
         .pipe(notify({message: 'Scripts task complete'}));
 });
 
+gulp.task('demoScripts', function () {
+    return gulp.src([
+            'src/assets/js/demo.js'
+        ])
+        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(notify({message: 'Demo Scripts task complete'}));
+});
+
 gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('build', ['html', 'styles', 'scripts']);
+gulp.task('build', ['html', 'styles', 'scripts', 'demoScripts']);
 
 gulp.task('default', ['build']);
 
@@ -61,7 +67,10 @@ gulp.task('serve', ['styles'], function () {
 
     gulp.watch("src/**/*.html", ['html']);
     gulp.watch("src/assets/js/**/*.js", ['scripts']);
+    gulp.watch("src/assets/js/**/*.js", ['demoScripts']);
     gulp.watch("src/scss/**/*.scss", ['styles']);
-    gulp.watch("dist/styles/*").on('change', reload);
+
     gulp.watch("dist/**/*.html").on('change', reload);
+    gulp.watch("dist/assets/js/*").on('change', reload);
+    gulp.watch("dist/styles/*").on('change', reload);
 });
