@@ -24,7 +24,7 @@ gulp.task('styles', function () {
         style: 'expanded',
         precision: 8
     };
-    gulp.src('src/assets/scss/main.scss')
+    gulp.src('src/assets/scss/viewport.scss')
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(gulp.dest('dist/assets/styles'))
     .pipe(notify({message: 'Sass task complete'}));
@@ -34,7 +34,7 @@ gulp.task('scripts', function () {
     return gulp.src([
             'src/assets/js/viewport.js'
         ])
-        .pipe(concat('main.js'))
+        .pipe(concat('viewport.js'))
         .pipe(gulp.dest('dist/assets/js'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
