@@ -26,33 +26,27 @@ gulp.task('styles', function () {
     };
     gulp.src('src/assets/scss/viewport.scss')
     .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(gulp.dest('dist/assets/styles'))
+    .pipe(gulp.dest('dist/'))
     .pipe(notify({message: 'Sass task complete'}));
 });
 
 gulp.task('scss', function () {
     return gulp.src('src/assets/scss/viewport.scss')
-        .pipe(gulp.dest('dist/assets/scss'))
+        .pipe(gulp.dest('dist/'))
         .pipe(notify({message: 'Scss task complete'}));
 });
 
 gulp.task('scripts', function () {
-    return gulp.src([
-            'src/assets/js/viewport.js'
-        ])
+    return gulp.src('src/assets/js/viewport.js')
         .pipe(concat('viewport.js'))
-        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(gulp.dest('dist/'))
         .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/assets/js'))
         .pipe(notify({message: 'Scripts task complete'}));
 });
 
 gulp.task('demoScripts', function () {
-    return gulp.src([
-            'src/assets/js/demo.js'
-        ])
-        .pipe(gulp.dest('dist/assets/js'))
+    return gulp.src('src/assets/js/demo.js')
+        .pipe(gulp.dest('dist'))
         .pipe(notify({message: 'Demo Scripts task complete'}));
 });
 

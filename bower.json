@@ -1,6 +1,6 @@
 {
   "name": "Viewport",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/MattTurnure/Viewport",
   "authors": [
     "Matthew Turnure <matt@mattturnure.com>"
@@ -31,6 +31,9 @@
     "bower.json",
     "gulpfile.js",
     "package.json",
-    "README.md"
+    "README.md",
+    "src",
+    "favicon",
+    "dist/demo.js"
   ]
 }
