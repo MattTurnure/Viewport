@@ -54,7 +54,13 @@ gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('build', ['html', 'styles', 'scripts', 'demoScripts']);
+gulp.task('favicon', function (cb) {
+    return gulp.src('src/favicon.ico')
+        .pipe(gulp.dest('dist'))
+        .pipe(notify({message: 'Favicon task complete'}));
+});
+
+gulp.task('build', ['html', 'styles', 'scripts', 'demoScripts', 'favicon']);
 
 gulp.task('default', ['build']);
 

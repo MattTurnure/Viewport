@@ -9,7 +9,7 @@
     results.innerHTML = viewport.getType();
     body.classList.add('viewport-' + viewport.getType());
 
-    viewport.startResize(function () {
+    viewport.watchViewport(function () {
         results.innerHTML = viewport.getType();
 
         if (typeof body.classList === 'object') {
