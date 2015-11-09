@@ -1,6 +1,6 @@
 {
   "name": "Viewport",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/MattTurnure/Viewport",
   "authors": [
     "Matthew Turnure <matt@mattturnure.com>"
@@ -22,6 +22,15 @@
     "bower_components",
     "test",
     "tests",
+    "source",
+    "spec",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    "bower.json",
+    "gulpfile.js",
+    "package.json",
     "README.md"
   ]
 }
