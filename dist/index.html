@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,28 @@
 
         <link href="/viewport.css" rel="stylesheet">
         <style>
+            html {
+                box-sizing: border-box;
+            }
+
+            *, *:before, *:after {
+                box-sizing: inherit;
+            }
+
+            .wrapper {
+                height: 100vh;
+                position: relative;
+            }
+
+            .message {
+                font-size: 3rem;
+                text-align: center;
+                margin-top: -1.5rem;
+                position: absolute;
+                top: 50%;
+                width: 100%;
+            }
+
             .viewport-handheld {
                 background-color: #ccc;
                 color: #222;
@@ -25,16 +47,13 @@
             }
         </style>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <script src="dev/angular.js"></script>
+        <script src="viewport.js"></script>
+        <script src="dev/app.js"></script>
     </head>
-    <body role="document">
-        <h1>Viewport</h1>
-        <div id="viewport-type"></div>
-        <script src="/viewport.js"></script>
-        <script src="/demo.js"></script>
+    <body role="document" ng-controller="HomeController">
+        <div class="wrapper">
+            <h1 class="message">I am {{ viewportType }}</h1>
+        </div>
     </body>
 </html>

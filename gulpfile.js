@@ -30,12 +30,6 @@ gulp.task('styles', function () {
     .pipe(notify({message: 'Sass task complete'}));
 });
 
-gulp.task('scss', function () {
-    return gulp.src('src/assets/scss/viewport.scss')
-        .pipe(gulp.dest('dist/'))
-        .pipe(notify({message: 'Scss task complete'}));
-});
-
 gulp.task('scripts', function () {
     return gulp.src('src/assets/js/viewport.js')
         .pipe(concat('viewport.js'))
@@ -44,9 +38,17 @@ gulp.task('scripts', function () {
         .pipe(notify({message: 'Scripts task complete'}));
 });
 
-gulp.task('demoScripts', function () {
-    return gulp.src('src/assets/js/demo.js')
-        .pipe(gulp.dest('dist'))
+gulp.task('devScripts', function () {
+    return gulp.src('src/assets/js/app.js')
+        .pipe(gulp.dest('dist/dev'))
+        .pipe(notify({message: 'Demo Scripts task complete'}));
+});
+
+gulp.task('vendorScripts', function () {
+    return gulp.src(
+            'bower_components/angular/angular.js'
+        )
+        .pipe(gulp.dest('dist/dev'))
         .pipe(notify({message: 'Demo Scripts task complete'}));
 });
 
@@ -60,7 +62,7 @@ gulp.task('favicon', function (cb) {
         .pipe(notify({message: 'Favicon task complete'}));
 });
 
-gulp.task('build', ['html', 'styles', 'scss', 'scripts', 'demoScripts', 'favicon']);
+gulp.task('build', ['html', 'styles', 'scripts', 'devScripts', 'vendorScripts', 'favicon']);
 
 gulp.task('default', ['build']);
 
@@ -73,10 +75,11 @@ gulp.task('serve', ['styles'], function () {
 
     gulp.watch("src/**/*.html", ['html']);
     gulp.watch("src/assets/js/**/*.js", ['scripts']);
-    gulp.watch("src/assets/js/**/*.js", ['demoScripts']);
+    gulp.watch("src/assets/js/app.js", ['devScripts']);
     gulp.watch("src/scss/**/*.scss", ['styles']);
 
     gulp.watch("dist/**/*.html").on('change', reload);
-    gulp.watch("dist/assets/js/*").on('change', reload);
+    gulp.watch("dist/*").on('change', reload);
+    gulp.watch("dist/app.js").on('change', reload);
     gulp.watch("dist/styles/*").on('change', reload);
 });

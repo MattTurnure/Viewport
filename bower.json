@@ -1,14 +1,13 @@
 {
   "name": "Viewport",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/MattTurnure/Viewport",
   "authors": [
     "Matthew Turnure <matt@mattturnure.com>"
   ],
   "main": [
     "dist/assets/js/viewport.js",
-    "dist/assets/styles/viewport.css",
-    "dist/assets/scss/viewport.scss"
+    "dist/assets/styles/viewport.css"
   ],
   "description": "Viewport",
   "keywords": [
@@ -35,6 +34,11 @@
     "src",
     "dist/favicon.ico",
     "dist/index.html",
-    "dist/demo.js"
-  ]
+    "dist/demo.js",
+    "dist/dev"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.7",
+    "jsr-mocks": "angular"
+  }
 }
