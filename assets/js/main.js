@@ -3,7 +3,7 @@
 
     var timer = 0, viewport = {}, types = ['handheld', 'tablet', 'widescreen'];
 
-    function startResize(cb) {
+    function watchViewport(cb) {
         // fire method on window resize once the resize event completes
         if (typeof(addEventListener) === 'function') {
             window.addEventListener('resize', function () {
@@ -34,7 +34,7 @@
     }
 
     viewport = {
-        startResize: startResize,
+        watchViewport: watchViewport,
         getType: getType,
         types: types
     };
