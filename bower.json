@@ -1,25 +1,27 @@
 {
-    "name": "Viewport",
-    "version": "1.0.0",
-    "homepage": "https://github.com/MattTurnure/Viewport",
-    "authors": [
-        "Matthew Turnure <matt@mattturnure.com>"
-    ],
-    "main": [
-        "dist/assets/js/viewport.js",
-        "dist/assets/styles/viewport.css"
-    ],
-    "description": "Viewport",
-    "keywords": [
-        "JavaScript",
-        "SCSS"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ]
+  "name": "Viewport",
+  "version": "1.0.0",
+  "homepage": "https://github.com/MattTurnure/Viewport",
+  "authors": [
+    "Matthew Turnure <matt@mattturnure.com>"
+  ],
+  "main": [
+    "dist/assets/js/viewport.js",
+    "dist/assets/styles/viewport.css",
+    "dist/assets/scss/viewport.scss"
+  ],
+  "description": "Viewport",
+  "keywords": [
+    "JavaScript",
+    "SCSS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "README.md"
+  ]
 }

@@ -30,6 +30,12 @@ gulp.task('styles', function () {
     .pipe(notify({message: 'Sass task complete'}));
 });
 
+gulp.task('scss', function () {
+    return gulp.src('src/assets/scss/viewport.scss')
+        .pipe(gulp.dest('dist/assets/scss'))
+        .pipe(notify({message: 'Scss task complete'}));
+});
+
 gulp.task('scripts', function () {
     return gulp.src([
             'src/assets/js/viewport.js'
@@ -60,7 +66,7 @@ gulp.task('favicon', function (cb) {
         .pipe(notify({message: 'Favicon task complete'}));
 });
 
-gulp.task('build', ['html', 'styles', 'scripts', 'demoScripts', 'favicon']);
+gulp.task('build', ['html', 'styles', 'scss', 'scripts', 'demoScripts', 'favicon']);
 
 gulp.task('default', ['build']);
 

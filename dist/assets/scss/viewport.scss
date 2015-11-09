@@ -1,0 +1,20 @@
+$breakpoint-one : 31.25em;
+$breakpoint-wide: 60em;
+
+@media all and (min-width: $breakpoint-one) {
+    body {
+        &:after {
+            content: "tablet";
+            display: none;
+        }
+    }
+}
+
+@media all and (min-width: $breakpoint-wide) {
+    body {
+        &:after {
+            content: "widescreen";
+            display: none;
+        }
+    }
+}
