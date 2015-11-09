@@ -1,6 +1,6 @@
 {
   "name": "Viewport",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/MattTurnure/Viewport",
   "authors": [
     "Matthew Turnure <matt@mattturnure.com>"
@@ -33,7 +33,8 @@
     "package.json",
     "README.md",
     "src",
-    "favicon",
+    "dist/favicon.ico",
+    "dist/index.html",
     "dist/demo.js"
   ]
 }
