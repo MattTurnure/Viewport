@@ -1,3 +1,8 @@
+@media all and (min-width: 28.125em) {
+  body:after {
+    content: "mini";
+    display: none; } }
+
 @media all and (min-width: 31.25em) {
   body:after {
     content: "tablet";

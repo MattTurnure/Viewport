@@ -24,6 +24,7 @@
 
             .message {
                 font-size: 3rem;
+                font-weight: 400;
                 text-align: center;
                 margin-top: -1.5rem;
                 position: absolute;
@@ -31,7 +32,16 @@
                 width: 100%;
             }
 
+            .viewport-type {
+                font-weight: 700;
+            }
+
             .viewport-handheld {
+                background-color: #fff;
+                color: #222;
+            }
+
+            .viewport-mini {
                 background-color: #ccc;
                 color: #222;
             }
@@ -53,7 +63,7 @@
     </head>
     <body role="document" ng-controller="HomeController">
         <div class="wrapper">
-            <h1 class="message">I am {{ viewportType }}</h1>
+            <h1 class="message">I am <span class="viewport-type">{{ viewportType }}</span></h1>
         </div>
     </body>
 </html>
