@@ -13,13 +13,16 @@
     <body role="document" ng-controller="HomeController">
         <div class="wrapper"
             ng-class="hasSidebar ? 'has-sidebar' : ''">
-            <h1 class="message">I am <span class="viewport-type">{{ viewportType }}</span></h1>
 
             <main class="content-main">
-                <h1>San Francisco Bicycle Parking</h1>
+                <h4 class="message"
+                    ng-class="isResizing ? 'spin' : ''"><span class="viewport-type">{{ viewportType }}</span></h4>
+                <h1 class="main-heading">San Francisco Bicycle Parking</h1>
+
+                <h2 class="subheading">{{ dataListSize }}</h2>
                 <ul class="card-list">
                     <li class="card" ng-repeat="item in data">
-                        <h2 class="card-heading">{{ item[9] }}</h2>
+                        <h3 class="card-heading">{{ item[9] }}</h3>
                         <span class="card-address">{{ item[8] }}</span>
                         <span class="card-latlong">Lat, Long: {{ item[16][1] }}, {{ item[16][2] }}</span>
                     </li>

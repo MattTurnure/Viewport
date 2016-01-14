@@ -82,7 +82,9 @@ gulp.task('serve', ['html', 'sass', 'demoScripts'], function () {
     gulp.watch('src/scss/*.scss', ['sass']);
     gulp.watch('src/**/*.js', ['demoScripts']);
     gulp.watch('src/index.html', ['html']);
+    gulp.watch('src/components/**/*.html', ['components']);
 
     gulp.watch('src/index.html').on('change', reload);
+    gulp.watch('src/components/**/*.html').on('change', reload);
     gulp.watch('dist/demo/app.js').on('change', reload);
 });

@@ -294,16 +294,17 @@ SHORTMONTH:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),WEEKENDR
 negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=a|0,f=c;u===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0==f?"one":"other"}})}]),B(X).ready(function(){Zd(X,yc)}))})(window,document);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 //# sourceMappingURL=angular.min.js.map
 
-(function (doc) {
+(function (global, doc) {
     'use strict';
 
     angular.module('app', ['viewport'])
         .controller('HomeController', HomeController);
 
     function HomeController($scope, viewport, $log, DataFactory) {
-        var vm      = this,
-            results = doc.getElementById('viewport-type'),
-            body    = doc.body;
+        var vm            = this,
+            results       = doc.getElementById('viewport-type'),
+            body          = doc.body,
+            viewportState = '';
 
         $scope.viewportType = viewport.getType();
         $scope.data         = [];
@@ -338,20 +339,25 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
         }
 
         function getData() {
-            if (viewport.getType() === 'handheld') {
+            if (viewport.getType() === 'handheld' || viewport.getType() === 'mini') {
                 DataFactory.getSmallData()
                 .then(function (response) {
-                    $log.info('data:', response);
-                    $log.info('Viewport type:', viewport.getType());
+                    viewportState = viewport.getType();
+                    $scope.dataListSize = 'Less data is loaded for ' + viewportState;
                     $scope.data = response;
                 });
+            }
+
+            if (viewport.getType() === 'mini') {
+                viewportState = viewport.getType();
+                $scope.dataListSize = 'Less data is loaded for ' + viewportState;
             }
 
             if (viewport.getType() === 'tablet') {
                 DataFactory.getMediumData()
                 .then(function (response) {
-                    $log.info('data:', response);
-                    $log.info('Viewport type:', viewport.getType());
+                    viewportState = viewport.getType();
+                    $scope.dataListSize = 'More data is loaded for ' + viewportState;
                     $scope.data = response;
                 });
             }
@@ -359,8 +365,8 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
             if (viewport.getType() === 'widescreen') {
                 DataFactory.getBigData()
                 .then(function (response) {
-                    $log.info('data:', response);
-                    $log.info('Viewport type:', viewport.getType());
+                    viewportState = viewport.getType();
+                    $scope.dataListSize = 'The most data is loaded for ' + viewportState;
                     $scope.data = response;
                 });
             }
@@ -374,7 +380,7 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
             }
         }
     }
-}(document));
+}(window, document));
 (function () {
     'use strict';
 
