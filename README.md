@@ -5,15 +5,14 @@ This module creates variables within CSS media queries that you can use to sync 
 
 ## Installation ##
 
-Via Bower: `bower install Viewport#angular`
+Via NPM: `npm install viewport-angular`
 
-### Now ###
+## Basic Usage ##
+
 1. Add this in your head tag:
     `<link rel="stylesheet" href="[assetsPath]/viewport.css">`
 2. Add this after your reference to Angular:
     `<script src="[assetsPath]/viewport.js" ></script>`
-
-## Usage ##
 
 Once everything is bootstrapped, dependency inject `viewport` into your app.
 
