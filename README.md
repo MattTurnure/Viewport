@@ -1,7 +1,7 @@
 Viewport
 ========
 
-Use JavaScript to detect CSS variables on resize.
+Create variables within CSS media queries that you can use to sync up your width-sensitive JavaScript methods on page load as well as browser resize.
 
 ## Dependencies ##
 
