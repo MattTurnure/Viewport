@@ -46,7 +46,7 @@ gulp.task('packageSass', function () {
 });
 
 gulp.task('packageScripts', function () {
-    return gulp.src('src/assets/js/viewport.js')
+    return gulp.src('src/ng-viewport.js')
         .pipe(gulp.dest('dist/'));
 });
 
@@ -63,12 +63,7 @@ gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('favicon', function (cb) {
-    return gulp.src('src/favicon.ico')
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageScripts', 'demoScripts', 'favicon']);
+gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageScripts', 'demoScripts']);
 
 gulp.task('default', ['build']);
 

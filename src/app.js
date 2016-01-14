@@ -7,8 +7,7 @@
     function HomeController($scope, viewport, $log, DataFactory) {
         var vm            = this,
             results       = doc.getElementById('viewport-type'),
-            body          = doc.body,
-            viewportState = '';
+            body          = doc.body;
 
         $scope.viewportType = viewport.getType();
         $scope.data         = [];
@@ -46,22 +45,19 @@
             if (viewport.getType() === 'handheld' || viewport.getType() === 'mini') {
                 DataFactory.getSmallData()
                 .then(function (response) {
-                    viewportState = viewport.getType();
-                    $scope.dataListSize = 'Less data is loaded for ' + viewportState;
+                    $scope.dataListSize = 'Less data is loaded for ' + viewport.getType();
                     $scope.data = response;
                 });
             }
 
             if (viewport.getType() === 'mini') {
-                viewportState = viewport.getType();
-                $scope.dataListSize = 'Less data is loaded for ' + viewportState;
+                $scope.dataListSize = 'Less data is loaded for ' + viewport.getType();
             }
 
             if (viewport.getType() === 'tablet') {
                 DataFactory.getMediumData()
                 .then(function (response) {
-                    viewportState = viewport.getType();
-                    $scope.dataListSize = 'More data is loaded for ' + viewportState;
+                    $scope.dataListSize = 'More data is loaded for ' + viewport.getType();
                     $scope.data = response;
                 });
             }
@@ -69,8 +65,7 @@
             if (viewport.getType() === 'widescreen') {
                 DataFactory.getBigData()
                 .then(function (response) {
-                    viewportState = viewport.getType();
-                    $scope.dataListSize = 'The most data is loaded for ' + viewportState;
+                    $scope.dataListSize = 'The most data is loaded for ' + viewport.getType();
                     $scope.data = response;
                 });
             }
