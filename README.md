@@ -21,6 +21,8 @@ Via Bower: <code>bower install Viewport#angular</code>
 
 Once everything is bootstrapped, dependency inject <code>viewport</code> into your app.
 
+Check out the [demo](http://mattturnure.github.io/Viewport/).
+
 ### Methods ###
 
 There are two methods that belong to viewport: <code>watchViewport</code> and <code>getType</code>.
