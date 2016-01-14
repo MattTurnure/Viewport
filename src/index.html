@@ -8,11 +8,8 @@
         <title>Viewport</title>
 
         <link href="demo/app.css" rel="stylesheet">
-        <script src="demo/app.js"></script>
     </head>
     <body role="document" ng-controller="HomeController">
-        <!-- TODO: add sidebar for widescreen -->
-        <!-- TODO: add varied data sets for each respective viewport width -->
         <div class="wrapper"
             ng-class="hasSidebar ? 'has-sidebar' : ''">
             <h1 class="message">I am <span class="viewport-type">{{ viewportType }}</span></h1>
@@ -29,5 +26,6 @@
             </main>
             <aside class="sidebar" sidebar ng-if="hasSidebar"></aside>
         </div>
+        <script src="demo/app.js"></script>
     </body>
 </html>

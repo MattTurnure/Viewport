@@ -20,13 +20,19 @@ var sassOptions = {
 };
 
 gulp.task('html', function () {
-    return gulp.src('src/**/*.html')
+    return gulp.src('src/index.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('components', function () {
+    return gulp.src('src/components/**/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('dist/demo'));
+});
+
 gulp.task('sass', function () {
-    gulp.src('src/assets/scss/**/*.scss')
+    gulp.src('src/scss/**/*.scss')
     .pipe(concat('app.css'))
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(minifyCss())
@@ -35,7 +41,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('packageSass', function () {
-    return gulp.src('src/assets/scss/viewport.scss')
+    return gulp.src('src/scss/viewport.scss')
         .pipe(gulp.dest('dist/'));
 });
 
@@ -62,7 +68,7 @@ gulp.task('favicon', function (cb) {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['html', 'sass', 'packageSass', 'packageScripts', 'demoScripts', 'favicon']);
+gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageScripts', 'demoScripts', 'favicon']);
 
 gulp.task('default', ['build']);
 
@@ -73,10 +79,10 @@ gulp.task('serve', ['html', 'sass', 'demoScripts'], function () {
         }
     });
 
-    gulp.watch('src/assets/scss/*.scss', ['sass']);
+    gulp.watch('src/scss/*.scss', ['sass']);
     gulp.watch('src/**/*.js', ['demoScripts']);
-    gulp.watch('src/*.html', ['html']);
+    gulp.watch('src/index.html', ['html']);
 
-    gulp.watch('src/*.html').on('change', reload);
+    gulp.watch('src/index.html').on('change', reload);
     gulp.watch('dist/demo/app.js').on('change', reload);
 });

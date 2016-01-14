@@ -509,7 +509,7 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
     function sidebar() {
         return {
             scope: {},
-            templateUrl: '../sidebar.html'
+            templateUrl: 'demo/sidebar.html'
         };
     }
 }());

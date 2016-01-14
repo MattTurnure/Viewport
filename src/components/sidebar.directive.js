@@ -7,7 +7,7 @@
     function sidebar() {
         return {
             scope: {},
-            templateUrl: '../sidebar.html'
+            templateUrl: 'demo/sidebar.html'
         };
     }
 }());
