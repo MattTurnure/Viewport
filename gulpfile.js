@@ -45,6 +45,13 @@ gulp.task('packageSass', function () {
         .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('packageCSS', function () {
+    gulp.src('src/scss/viewport.scss')
+    .pipe(concat('viewport.css'))
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('packageScripts', function () {
     return gulp.src('src/ng-viewport.js')
         .pipe(gulp.dest('dist/'));
@@ -63,7 +70,7 @@ gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageScripts', 'demoScripts']);
+gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageCSS', 'packageScripts', 'demoScripts']);
 
 gulp.task('default', ['build']);
 
