@@ -24,7 +24,7 @@ There are two methods that viewport returns: `watchViewport` and `getType`.
 
 `getType` returns the string value based on the viewport width. Example:
 
-    console.log(viewport.getType()); // possible values include handheld, mini, tablet, widescreen
+`console.log(viewport.getType()); // possible values include handheld, mini, tablet, widescreen`
 
 `watchViewport` starts a resize event that you can pass a callback to. Example:
 
