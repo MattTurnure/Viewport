@@ -306,10 +306,12 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
             body    = doc.body;
 
         $scope.viewportType = viewport.getType();
-        $scope.data = [];
+        $scope.data         = [];
+        $scope.hasSidebar   = false;
 
         // init based on viewport size
         getData();
+        setLayoutState();
 
         body.classList.add('viewport-' + viewport.getType());
 
@@ -319,6 +321,7 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
             });
 
             getData();
+            setLayoutState();
 
             if (typeof body.classList === 'object') {
                 resetViewportBodyClass();
@@ -360,6 +363,14 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
                     $log.info('Viewport type:', viewport.getType());
                     $scope.data = response;
                 });
+            }
+        }
+
+        function setLayoutState() {
+            if (viewport.getType() === 'widescreen') {
+                $scope.hasSidebar = true;
+            } else {
+                $scope.hasSidebar = false;
             }
         }
     }
@@ -487,5 +498,18 @@ negSuf:"",posPre:"\u00a4",posSuf:""}]},id:"en-us",pluralCat:function(a,c){var e=
 
             return deferred.promise;
         }
+    }
+}());
+(function () {
+    'use strict';
+
+    angular.module('app')
+        .directive('sidebar', sidebar);
+
+    function sidebar() {
+        return {
+            scope: {},
+            templateUrl: '../sidebar.html'
+        };
     }
 }());

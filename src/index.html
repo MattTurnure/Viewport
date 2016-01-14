@@ -13,18 +13,21 @@
     <body role="document" ng-controller="HomeController">
         <!-- TODO: add sidebar for widescreen -->
         <!-- TODO: add varied data sets for each respective viewport width -->
-        <div class="wrapper">
+        <div class="wrapper"
+            ng-class="hasSidebar ? 'has-sidebar' : ''">
             <h1 class="message">I am <span class="viewport-type">{{ viewportType }}</span></h1>
 
-            <h1>San Francisco Bicycle Parking</h1>
-            <ul class="card-list">
-                <li class="card" ng-repeat="item in data">
-                    <h2 class="card-heading">{{ item[9] }}</h2>
-                    <span class="card-address">{{ item[8] }}</span>
-                    <span class="card-latlong">Lat, Long: {{ item[16][1] }}, {{ item[16][2] }}</span>
-                </li>
-            </ul>
-
+            <main class="content-main">
+                <h1>San Francisco Bicycle Parking</h1>
+                <ul class="card-list">
+                    <li class="card" ng-repeat="item in data">
+                        <h2 class="card-heading">{{ item[9] }}</h2>
+                        <span class="card-address">{{ item[8] }}</span>
+                        <span class="card-latlong">Lat, Long: {{ item[16][1] }}, {{ item[16][2] }}</span>
+                    </li>
+                </ul>
+            </main>
+            <aside class="sidebar" sidebar ng-if="hasSidebar"></aside>
         </div>
     </body>
 </html>

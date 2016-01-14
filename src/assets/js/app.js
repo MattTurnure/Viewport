@@ -10,10 +10,12 @@
             body    = doc.body;
 
         $scope.viewportType = viewport.getType();
-        $scope.data = [];
+        $scope.data         = [];
+        $scope.hasSidebar   = false;
 
         // init based on viewport size
         getData();
+        setLayoutState();
 
         body.classList.add('viewport-' + viewport.getType());
 
@@ -23,6 +25,7 @@
             });
 
             getData();
+            setLayoutState();
 
             if (typeof body.classList === 'object') {
                 resetViewportBodyClass();
@@ -64,6 +67,14 @@
                     $log.info('Viewport type:', viewport.getType());
                     $scope.data = response;
                 });
+            }
+        }
+
+        function setLayoutState() {
+            if (viewport.getType() === 'widescreen') {
+                $scope.hasSidebar = true;
+            } else {
+                $scope.hasSidebar = false;
             }
         }
     }

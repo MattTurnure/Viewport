@@ -16,6 +16,7 @@ h1 {
     font-size: 23px;
     font-weight: 500;
     line-height: 23px;
+    margin-left: .5rem;
 }
 
 h2 {
@@ -72,7 +73,6 @@ p {
 
 .card-list {
     display: flex;
-    flex-grow: 1;
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
@@ -83,10 +83,27 @@ p {
     background-color: rgba(0,0,0,0.25);
     margin: .5rem;
     padding: .5rem 1rem;
+    flex: 1 1 auto;
 }
 
 .card-heading,
 .card-address,
 .card-latlong {
     margin: 0;
+}
+
+.has-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+
+    .content-main {
+        padding-right: 24px;
+        width: 75%;
+    }
+
+    .sidebar {
+        background-color: rgba(0,0,0,0.25);
+        padding: 0 24px 24px;
+        width: 25%;
+    }
 }
