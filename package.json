@@ -1,26 +1,23 @@
 {
-  "name": "Mattstrap",
-  "version": "1.0.0",
-  "description": "Custom Bootstrap build",
+  "name": "viewport",
+  "version": "0.0.1",
+  "description": "This module creates variables within CSS media queries that you can use to sync up your width-sensitive JavaScript methods on load and resize events.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MattTurnure/Crossfit-PR-Weight-Calculator.gitgit push heroku master"
-  },
   "keywords": [
-    "Bootstrap",
-    "sass",
-    "scss"
+    "resize event",
+    "Angular",
+    "JavaScript",
+    "module"
   ],
   "author": "Matt Turnure",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CodeScience/Mattstrap/issues"
+    "url": "https://github.com/MattTurnure/Viewport/issues"
   },
-  "homepage": "https://github.com/CodeScience/Mattstrap",
+  "homepage": "http://mattturnure.github.io/Viewport/",
   "devDependencies": {
     "angular": "^1.4.8",
     "browser-sync": "^2.7.3",
