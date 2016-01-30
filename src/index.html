@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,34 +7,26 @@
 
         <title>Viewport</title>
 
-        <link href="/viewport.css" rel="stylesheet">
-        <style>
-            .viewport-handheld {
-                background-color: #ccc;
-                color: #222;
-            }
-
-            .viewport-tablet {
-                background-color: #666;
-                color: #fff;
-            }
-
-            .viewport-widescreen {
-                background-color: #222;
-                color: #fff;
-            }
-        </style>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link href="demo/app.css" rel="stylesheet">
+        <script src="demo/app.js"></script>
     </head>
-    <body role="document">
-        <h1>Viewport</h1>
-        <div id="viewport-type"></div>
-        <script src="/viewport.js"></script>
-        <script src="/demo.js"></script>
+    <body role="document" ng-controller="HomeController">
+        <div class="wrapper"
+            ng-class="hasSidebar ? 'has-sidebar' : ''">
+
+            <main class="content-main">
+                <h4 class="message"><span class="viewport-type">{{ viewportType }}</span></h4>
+                <h1 class="main-heading">{{ dataListSize }}</h1>
+                <h2 class="subheading">San Francisco Bicycle Parking</h2>
+                <ul class="card-list">
+                    <li class="card" ng-repeat="item in data">
+                        <h3 class="card-heading">{{ item[9] }}</h3>
+                        <span class="card-address">{{ item[8] }}</span>
+                        <span class="card-latlong">Lat, Long: {{ item[16][1] }}, {{ item[16][2] }}</span>
+                    </li>
+                </ul>
+            </main>
+            <aside class="sidebar" sidebar ng-if="hasSidebar"></aside>
+        </div>
     </body>
 </html>

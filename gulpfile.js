@@ -2,81 +2,91 @@
 
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
-    notify      = require('gulp-notify'),
     del         = require('del'),
     jshint      = require('gulp-jshint'),
     uglify      = require('gulp-uglify'),
     rename      = require('gulp-rename'),
     concat      = require('gulp-concat'),
-    browserSync = require('browser-sync'),
+    htmlmin     = require('gulp-htmlmin'),
+    minifyCss   = require('gulp-minify-css'),
+    browserSync = require('browser-sync').create(),
     reload      = browserSync.reload;
 
+var sassOptions = {
+    defaultEncoding: 'UTF-8',
+    lineNumbers: true,
+    style: 'expanded',
+    precision: 8
+};
+
 gulp.task('html', function () {
-    return gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist/'))
-        .pipe(notify({message: 'HTML task complete'}));
+    return gulp.src('src/index.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('styles', function () {
-    var sassOptions = {
-        defaultEncoding: 'UTF-8',
-        lineNumbers: true,
-        style: 'expanded',
-        precision: 8
-    };
-    gulp.src('src/assets/scss/viewport.scss')
+gulp.task('components', function () {
+    return gulp.src('src/components/**/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('dist/demo'));
+});
+
+gulp.task('sass', function () {
+    gulp.src('src/scss/**/*.scss')
+    .pipe(concat('app.css'))
     .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(gulp.dest('dist/'))
-    .pipe(notify({message: 'Sass task complete'}));
+    .pipe(minifyCss())
+    .pipe(gulp.dest('dist/demo'))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('scss', function () {
-    return gulp.src('src/assets/scss/viewport.scss')
-        .pipe(gulp.dest('dist/'))
-        .pipe(notify({message: 'Scss task complete'}));
+gulp.task('packageSass', function () {
+    return gulp.src('src/scss/viewport.scss')
+        .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('src/assets/js/viewport.js')
-        .pipe(concat('viewport.js'))
-        .pipe(gulp.dest('dist/'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(notify({message: 'Scripts task complete'}));
+gulp.task('packageCSS', function () {
+    gulp.src('src/scss/viewport.scss')
+    .pipe(concat('viewport.css'))
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('packageScripts', function () {
+    return gulp.src('src/ng-viewport.js')
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('demoScripts', function () {
-    return gulp.src('src/assets/js/demo.js')
-        .pipe(gulp.dest('dist'))
-        .pipe(notify({message: 'Demo Scripts task complete'}));
+    return gulp.src([
+            'node_modules/angular/angular.min.js',
+            'src/**/*.js'
+        ])
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('dist/demo'));
 });
 
 gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('favicon', function (cb) {
-    return gulp.src('src/favicon.ico')
-        .pipe(gulp.dest('dist'))
-        .pipe(notify({message: 'Favicon task complete'}));
-});
-
-gulp.task('build', ['html', 'styles', 'scss', 'scripts', 'demoScripts', 'favicon']);
+gulp.task('build', ['html', 'components', 'sass', 'packageSass', 'packageCSS', 'packageScripts', 'demoScripts']);
 
 gulp.task('default', ['build']);
 
-// Static Server + watching scss/html files
-gulp.task('serve', ['styles'], function () {
-
-    browserSync({
-        server: "./dist"
+gulp.task('serve', ['html', 'sass', 'demoScripts'], function () {
+    browserSync.init({
+        server: {
+            baseDir: './dist'
+        }
     });
 
-    gulp.watch("src/**/*.html", ['html']);
-    gulp.watch("src/assets/js/**/*.js", ['scripts']);
-    gulp.watch("src/assets/js/**/*.js", ['demoScripts']);
-    gulp.watch("src/scss/**/*.scss", ['styles']);
+    gulp.watch('src/scss/*.scss', ['sass']);
+    gulp.watch('src/**/*.js', ['demoScripts']);
+    gulp.watch('src/index.html', ['html']);
+    gulp.watch('src/components/**/*.html', ['components']);
 
-    gulp.watch("dist/**/*.html").on('change', reload);
-    gulp.watch("dist/assets/js/*").on('change', reload);
-    gulp.watch("dist/styles/*").on('change', reload);
+    gulp.watch('src/index.html').on('change', reload);
+    gulp.watch('src/components/**/*.html').on('change', reload);
+    gulp.watch('dist/demo/app.js').on('change', reload);
 });

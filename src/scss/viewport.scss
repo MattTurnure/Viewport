@@ -1,7 +1,17 @@
-$breakpoint-one : 31.25em;
+$breakpoint-one : 28.125em;
+$breakpoint-two : 31.25em;
 $breakpoint-wide: 60em;
 
 @media all and (min-width: $breakpoint-one) {
+    body {
+        &:after {
+            content: "mini";
+            display: none;
+        }
+    }
+}
+
+@media all and (min-width: $breakpoint-two) {
     body {
         &:after {
             content: "tablet";
